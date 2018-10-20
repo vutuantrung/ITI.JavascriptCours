@@ -1,0 +1,49 @@
+@media screen and (max-width: 600px) {
+    /*
+    * Spécifier les nouvelles dimensions
+    */
+    .card {
+    }
+
+    /*
+    * Spécifier les nouvelles dimensions
+    * cacher le panneau à droite 
+    */
+    .games {
+        width: 280px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 15;
+    }
+
+    /**
+    * Transition de gauche à droite pour révéler
+    */
+    .games.show {
+
+    }
+    
+    /**
+    * Spécifier les nouvelles dimensions
+    * Cacher le panneau en bas 
+    */
+    .messages {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        transform-origin: top;
+        z-index: 15;
+    }
+
+    /**
+    * Transition de bas en haut pour révéler
+    */
+    .messages.show {
+    }
+    
+    .card > .front {
+        font-size: 50px;
+        line-height: 100px;
+    }
+}

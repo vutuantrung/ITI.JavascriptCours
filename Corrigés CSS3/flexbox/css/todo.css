@@ -1,0 +1,46 @@
+/* flexbox */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+/* flexbox */
+body > main {
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    flex: 1;
+}
+
+/* flexbox */
+body > main > section {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+}
+
+/* flexbox */
+body > main > section > .content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* dimensions */
+.card {
+    height: 200px;
+    width: 200px;
+    transition: all .5s ease;
+    transform-style: preserve-3d;
+}
+
+/* rotation */
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+/* face arrière */
+.card > .back {
+    background: #4fcc99;
+}

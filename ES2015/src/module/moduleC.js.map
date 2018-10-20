@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../es2015/src/module/moduleC.js"],"names":["doSomething","doSomethingElse"],"mappings":";;;;;QAAgBA,W,GAAAA,W;QAIAC,e,GAAAA,e;AAJT,SAASD,WAAT,GAAuB,CAE7B;;AAEM,SAASC,eAAT,GAA2B,CAEjC","file":"moduleC.js","sourceRoot":"es2015","sourcesContent":["export function doSomething() {\r\n   \r\n}\r\n\r\nexport function doSomethingElse() {\r\n    \r\n}\r\n"]}

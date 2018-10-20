@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../es2015/src/module/moduleB.js"],"names":["val","str"],"mappings":";;;;;AAAO,IAAMA,oBAAM,EAAZ;AACA,IAAMC,oBAAM,OAAZ","file":"moduleB.js","sourceRoot":"es2015","sourcesContent":["export const val = 50;\r\nexport const str = \"hello\";"]}

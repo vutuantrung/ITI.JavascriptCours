@@ -1,0 +1,35 @@
+/* appliquer l'animation spin */
+.cubespinner {
+}
+
+/* appliquer l'animation glow */
+.glow {
+}
+
+/* définir l'animation glow */
+@keyframes glow {
+    0% {
+    }
+    50% {
+    }
+    80% {
+    }
+    100% {
+    }
+}
+
+/* définir l'animation spin */
+@keyframes spin {
+    0%{ /*1*/
+    }
+    17%{ /*2*/
+    }
+    33% { /*3*/
+    }
+    50%{ /*4*/
+    }
+    66%{ /*5*/
+    }
+    83%{ /*6*/
+    }
+}

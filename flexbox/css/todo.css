@@ -1,0 +1,36 @@
+/* container: va contenir deux lignes */
+body {
+    display: flex;
+    font-family: sans-serif;
+}
+
+/* container */
+body > main {
+    flex-direction: row;
+    align-self: stretch;
+    flex: 1;
+}
+
+/* container: va contenir deux colonnes de tailles relatives */
+body > main > section {
+}
+
+/* container: les éléments doivent revenir à la ligne */
+body > main > section > .content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* dimensions des cartes */
+.card {
+    transition: all .5s ease;
+    transform-style: preserve-3d;
+}
+
+/* la rotation */
+.card.flip {
+}
+
+/* l'aspect de la face arrière */
+.card > .back {
+}

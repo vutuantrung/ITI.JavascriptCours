@@ -1,0 +1,67 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background: #222;
+}
+
+.stage {
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    top: 50%;
+    left: 50%;
+    margin-top: -120px;
+    margin-left: -120px;
+}
+
+.glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 200px;
+    background: rgba(255, 254, 246, .2);
+    box-shadow: 0px 0px 200px 0px rgba(255, 254, 246, .5);
+}
+
+.cubespinner {
+    left: 60px;
+    top: 60px;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    transform-style: preserve-3d;
+    transform-origin: center;
+}
+
+.cubespinner div {
+    position: absolute;
+    box-sizing: border-box;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #ccc;
+    background: rgba(255,255,255,0.8);
+    line-height: 120px;
+    text-align: center;
+    font-size: 100px;
+}
+
+.cubespinner .face1 {
+    transform: translateZ(60px);
+}
+.cubespinner .face2 {
+    transform: translateY(-60px) rotateX(90deg);
+}
+.cubespinner .face3 {
+    transform: translateX(60px) rotateY(90deg);
+}
+.cubespinner .face4 {
+    transform: translateX(-60px) rotateY(-90deg);
+}
+.cubespinner .face5 {
+    transform: translateY(60px) rotateX(-90deg);
+}
+.cubespinner .face6 {
+    transform: translateZ(-60px) rotateY(-180deg);
+}
