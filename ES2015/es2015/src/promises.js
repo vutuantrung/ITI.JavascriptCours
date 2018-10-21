@@ -1,4 +1,6 @@
-import { resolve } from "path";
+import {
+    resolve
+} from "path";
 
 /**
  * Exécute de manière séquentielle de promises
@@ -7,7 +9,7 @@ import { resolve } from "path";
  * @return Une promise contenant tous les resultats de promises exécutées
  */
 export function chain(promises) {
-    
+    Promise.all(promises);
 }
 
 /**
@@ -15,9 +17,9 @@ export function chain(promises) {
  * @param millisecond le nombre de millisecondes avant de résoudre la Promise
  */
 export function delay(millisecond) {
-    var promise = new Promise((resolve, reject) => {
+    var promise = new Promise(function (resolve, reject) {
         setTimeout(() => {
-            resolve('Success');
+            reject();
         }, millisecond);
     });
     return promise;
@@ -28,7 +30,45 @@ export function delay(millisecond) {
  * @return une promise retournant le tableau des resultats des deux promise passées en paramètre
  */
 export function combine(promiseA, promiseB) {
-    var promiseResult = new Promise((resolve, reject) => {
-
-    });
+    return Promise.all([promiseA, promiseB]);
 }
+var firstMethod = function () {
+    var promise = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            console.log('first method completed');
+            resolve({
+                data: '123'
+            });
+        }, 2000);
+    });
+    return promise;
+};
+
+
+var secondMethod = function (someStuff) {
+    var promise = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            console.log('second method completed');
+            resolve({
+                newData: someStuff.data + ' some more data'
+            });
+        }, 2000);
+    });
+    return promise;
+};
+
+var thirdMethod = function (someStuff) {
+    var promise = new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            console.log('third method completed');
+            resolve({
+                result: someStuff.newData
+            });
+        }, 3000);
+    });
+    return promise;
+};
+
+/*firstMethod()
+    .then(secondMethod)
+    .then(thirdMethod);*/
