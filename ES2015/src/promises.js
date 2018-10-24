@@ -16,7 +16,8 @@ var _path = require('path');
  * @return Une promise contenant tous les resultats de promises exécutées
  */
 function chain(promises) {
-    Promise.all(promises);
+    var result = Promise.all(promises);
+    return result;
 }
 
 /**
@@ -26,6 +27,7 @@ function chain(promises) {
 function delay(millisecond) {
     var promise = new Promise(function (resolve, reject) {
         setTimeout(function () {
+            resolve();
             reject();
         }, millisecond);
     });
@@ -39,6 +41,8 @@ function delay(millisecond) {
 function combine(promiseA, promiseB) {
     return Promise.all([promiseA, promiseB]);
 }
+
+// TEST FUNCTION
 var firstMethod = function firstMethod() {
     var promise = new Promise(function (resolve, reject) {
         setTimeout(function () {

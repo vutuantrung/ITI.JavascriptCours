@@ -9,7 +9,8 @@ import {
  * @return Une promise contenant tous les resultats de promises exécutées
  */
 export function chain(promises) {
-    Promise.all(promises);
+    var result = Promise.all(promises);
+    return result;
 }
 
 /**
@@ -19,6 +20,7 @@ export function chain(promises) {
 export function delay(millisecond) {
     var promise = new Promise(function (resolve, reject) {
         setTimeout(() => {
+            resolve();
             reject();
         }, millisecond);
     });
@@ -32,6 +34,8 @@ export function delay(millisecond) {
 export function combine(promiseA, promiseB) {
     return Promise.all([promiseA, promiseB]);
 }
+
+// TEST FUNCTION
 var firstMethod = function () {
     var promise = new Promise(function (resolve, reject) {
         setTimeout(function () {
@@ -43,7 +47,6 @@ var firstMethod = function () {
     });
     return promise;
 };
-
 
 var secondMethod = function (someStuff) {
     var promise = new Promise(function (resolve, reject) {
