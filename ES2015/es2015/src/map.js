@@ -13,16 +13,29 @@ export class TextIndexer {
      * @param text Le texte source à indexer
      */
     indexText(text) {
-
+        let reg = /[&\/\\#,+()$~%.'":*?<>{}]/g;
+        let arr = text.replace(reg, '').toLowerCase().split(' ');
+        arr.forEach(e => {
+            if(this.map.get(e) === undefined){
+                this.map.set(e, 1);
+            }else{
+                let times = this.map.get(e);
+                times++;
+                this.map.set(e, times);
+            }
+        });
     }
 
     /**
      * Le poids d'un mot correspond au nombre de fois qu'il à été rencontré dans le texte.
      */
-    getWeight(word) {}
+    getWeight(word) {
+        return this.map.get(word);
+    }
 
     /**
      * retourne le nombre de mots indexés
      */
     get count() {}
 }
+

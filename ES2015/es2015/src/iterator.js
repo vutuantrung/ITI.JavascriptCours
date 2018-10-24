@@ -16,12 +16,19 @@ export class Iterator {
     constructor(onNext) {
         this.onNext = onNext;
     }
+
+    get next(){
+        return this.onNext;
+    }
+
 }
 /**
  * Résultat d'un itération
  */
 export class IteratorResult {
     constructor(value, done) {
+        this.value = value;
+        this.done = done;
     }
 }
 
@@ -30,7 +37,18 @@ export class IteratorResult {
  * S'aider de la fonction Object.keys
  */
 export function toIterable(obj) {
-   
+    obj[Symbol.iterator] = () => {
+        let keys = Object.keys(obj);
+        let i = -1;
+        return {
+            next: function () {
+                return {
+                    value: obj[keys[++i]],
+                    done: i === keys.length
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -39,5 +57,6 @@ export function toIterable(obj) {
  * @param {*String} string 
  */
 export function split(string) {
-    
+    let array = string.split(' ');
+    return array[Symbol.iterator]();
 }

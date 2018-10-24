@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -27,23 +27,39 @@ var TextIndexer = exports.TextIndexer = function () {
 
 
     _createClass(TextIndexer, [{
-        key: "indexText",
-        value: function indexText(text) {}
+        key: 'indexText',
+        value: function indexText(text) {
+            var _this = this;
+
+            var reg = /[&\/\\#,+()$~%.'":*?<>{}]/g;
+            var arr = text.replace(reg, '').toLowerCase().split(' ');
+            arr.forEach(function (e) {
+                if (_this.map.get(e) === undefined) {
+                    _this.map.set(e, 1);
+                } else {
+                    var times = _this.map.get(e);
+                    times++;
+                    _this.map.set(e, times);
+                }
+            });
+        }
 
         /**
          * Le poids d'un mot correspond au nombre de fois qu'il à été rencontré dans le texte.
          */
 
     }, {
-        key: "getWeight",
-        value: function getWeight(word) {}
+        key: 'getWeight',
+        value: function getWeight(word) {
+            return this.map.get(word);
+        }
 
         /**
          * retourne le nombre de mots indexés
          */
 
     }, {
-        key: "count",
+        key: 'count',
         get: function get() {}
     }]);
 
