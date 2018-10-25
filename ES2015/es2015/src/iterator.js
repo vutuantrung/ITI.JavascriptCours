@@ -11,13 +11,19 @@ export class Iterable {
 export class Iterator {
     /**
      * 
-     * @param {*Function} onNext  callback qui sera appelée a chaque appel de la méthode next()
+     * @param {*Function} onNext callback qui sera appelée a chaque appel de la méthode next()
      */
     constructor(onNext) {
-        this.onNext = onNext;
+        this.onNext = () =>{
+            let valueGot = onNext.call();
+            return{
+                value: valueGot,
+                done: valueGot === undefined
+            }
+        };
     }
 
-    get next(){
+    get next() {
         return this.onNext;
     }
 
@@ -41,9 +47,13 @@ export function toIterable(obj) {
         let keys = Object.keys(obj);
         let i = -1;
         return {
-            next: function () {
+            next() {
+                let j = ++i;
                 return {
-                    value: obj[keys[++i]],
+                    value: {
+                        key: keys[j],
+                        value: obj[keys[j]]
+                    },
                     done: i === keys.length
                 }
             }
