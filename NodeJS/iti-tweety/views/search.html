@@ -1,0 +1,12 @@
+<div class="tweets content" >
+    <h2>Liste des tweets pour {{token}}</h2>
+    <form action="/search" method="POST">
+        <input type="text" name="token" />
+        <button>Chercher</button>
+    </form>
+    <ul>
+        {{#tweets}}
+        <li>{{.}}</li>
+        {{/tweets}}
+    </ul>
+</div>

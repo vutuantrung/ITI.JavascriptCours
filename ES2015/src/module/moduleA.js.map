@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../es2015/src/module/moduleA.js"],"names":["doSomething"],"mappings":";;;;;QAAgBA,W,GAAAA,W;AAAT,SAASA,WAAT,GAAuB,CAE7B","file":"moduleA.js","sourceRoot":"es2015","sourcesContent":["export function doSomething() {\r\n   \r\n}\r\n"]}
+{"version":3,"sources":["../../es2015/src/module/moduleA.js"],"names":["doSomething"],"mappings":";;;;;QAAgBA,W,GAAAA,W;AAAT,SAASA,WAAT,GAAuB,CAE7B","file":"moduleA.js","sourceRoot":"es2015","sourcesContent":["export function doSomething() {\r\n\r\n}\r\n"]}

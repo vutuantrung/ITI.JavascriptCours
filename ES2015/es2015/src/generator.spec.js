@@ -73,6 +73,7 @@ describe("Generator Tests", () => {
                 return rand;
             })
         }
+        console.log(...sequence(...funcs));
         let seqRes = [...sequence(...funcs)];
         assert(
             funcs.length === results.length,

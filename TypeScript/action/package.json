@@ -1,0 +1,27 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "compile": "tsc",
+    "start": "npm run tsc:w",
+    "mocha": "npm run mocha",
+    "test": "mocha -- test/**/*.spec.js"
+  },
+  "dependencies": {
+    "reflect-metadata": "0.1.8"
+  },
+  "devDependencies": {
+    "mocha": "3.2.0",
+    "chai": "3.5.0",
+    "typescript": "2.1.4",
+    "@types/mocha": "2.2.33",
+    "@types/chai": "3.4.34",
+    "@types/reflect-metadata": "0.0.5"
+  },
+  "author": "",
+  "license": "ISC"
+}

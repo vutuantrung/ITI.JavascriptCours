@@ -70,6 +70,8 @@ describe("Generator Tests", function () {
     });
 
     it("sequence test", function (done) {
+        var _console;
+
         var results = [];
         var funcs = [];
         for (var i = 0; i < 50; i++) {
@@ -79,6 +81,7 @@ describe("Generator Tests", function () {
                 return rand;
             });
         }
+        (_console = console).log.apply(_console, _toConsumableArray(_generator.sequence.apply(undefined, funcs)));
         var seqRes = [].concat(_toConsumableArray(_generator.sequence.apply(undefined, funcs)));
         (0, _chai.assert)(funcs.length === results.length, "There must be " + funcs.length + " results");
         (0, _chai.expect)(results).to.be.eql(seqRes);

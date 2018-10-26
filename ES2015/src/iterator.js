@@ -25,12 +25,18 @@ exports.Iterable = function Iterable(iteratorFactory) {
 var Iterator = exports.Iterator = function () {
     /**
      * 
-     * @param {*Function} onNext  callback qui sera appelée a chaque appel de la méthode next()
+     * @param {*Function} onNext callback qui sera appelée a chaque appel de la méthode next()
      */
     function Iterator(onNext) {
         _classCallCheck(this, Iterator);
 
-        this.onNext = onNext;
+        this.onNext = function () {
+            var valueGot = onNext.call();
+            return {
+                value: valueGot,
+                done: valueGot === undefined
+            };
+        };
     }
 
     _createClass(Iterator, [{
@@ -66,8 +72,12 @@ function toIterable(obj) {
         var i = -1;
         return {
             next: function next() {
+                var j = ++i;
                 return {
-                    value: obj[keys[++i]],
+                    value: {
+                        key: keys[j],
+                        value: obj[keys[j]]
+                    },
                     done: i === keys.length
                 };
             }

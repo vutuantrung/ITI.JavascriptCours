@@ -59,8 +59,10 @@ yarn-error.log*
 
 
 # Dependency directories
+ES2015/src/
 ES2015/node_modules/
 ES2015/jspm_packages/
+TypeScript/action/node_modules/
 Toolling JS/Bootstrap/less/
 # Optional npm cache directory
 .npm
