@@ -14,7 +14,6 @@ describe("Generator Tests", () => {
         toIterable(obj);
         let props = [...obj];
         let it = obj[Symbol.iterator]();
-
         assert(
             it[Symbol.toStringTag] === "Generator",
             "The iterator must be provided via a generator function"
@@ -73,7 +72,6 @@ describe("Generator Tests", () => {
                 return rand;
             })
         }
-        console.log(...sequence(...funcs));
         let seqRes = [...sequence(...funcs)];
         assert(
             funcs.length === results.length,

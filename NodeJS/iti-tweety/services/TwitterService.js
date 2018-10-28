@@ -18,7 +18,11 @@ class TwitterService {
      */
     search(token) {
         // TODO: return a promise with the result
-        this.client.get('search/tweets', { q: token, count: 100, result_type: 'mixed' } /**,  callback( err, tweets, response )**/ );
+        this.client.get('search/tweets', { q: token, count: 100, result_type: 'mixed' },  function( err, tweets, response ){
+            return new Promise((resolve, reject) => {
+                
+            })
+        });
     }
 
     on(token, callback) {

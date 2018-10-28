@@ -7,7 +7,7 @@ const fs = require('fs');
 export class LoggerService {
 
     constructor(filePath) {
-        this.filePath = filePath;    
+        this.filePath = filePath;
     }
 
     /**
@@ -15,8 +15,11 @@ export class LoggerService {
      * Prefix messages with  "INFO: "
      */
     info(message) {
-        
-        // TODO use fs.writeFile to log data 
+        // TODO use fs.writeFile to log data
+        fs.writeFile('message.txt', data, (err) => {
+            if (err) throw err;
+            console.log('INFOR: ');
+        });
     }
 
     /**
@@ -24,7 +27,11 @@ export class LoggerService {
      * Prefix errors with  "ERROR: "
      */
     error(error) {
-        // TODO use fs.writeFile to log errors 
+        // TODO use fs.writeFile to log errors
+        fs.writeFile('message.txt', data, (err) => {
+            if (err) throw err;
+            console.log('ERROR: ');
+        });
     }
 }
 
