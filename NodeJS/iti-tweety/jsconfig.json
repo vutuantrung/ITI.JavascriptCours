@@ -1,4 +1,5 @@
 {
+    "experimentalDecorators": true,
     "compilerOptions": {
         "target": "ES6",
         "lib": [

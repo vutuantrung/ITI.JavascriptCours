@@ -1,44 +1,71 @@
-
-class Startup{
-    public static main(): void{
-        console.log("Hello world");
-    }
-}
-
-function logClass(target: any){
-
-    //save reference to the original constructor
+function logClass<TFunction extends Function>(target: TFunction) {
+    console.log("logClass 1");
+    // save a reference to the original constructor
     var original = target;
-
-    //a utility function to generate instance of a class
-    function construct(constructor, args){
-        var c: any = function(){
+    console.log(target);
+    // a utility function to generate instances of a class
+    function construct(constructor, args) {
+        var c: any = function () {
+            console.log("function construct 1");
             return constructor.apply(this, args);
         }
+        c.prototype = constructor.prototype;
+        return new c();
     }
 
-    //the new constructor behavior
-    var f: any = function(...args){
-        console.log("New: " + original.name);
+    // the new constructor behaviour
+    var f : any = function (...args) {
+        console.log(args);
+        //console.log("New: " + original.name);
         return construct(original, args);
     }
 
-    //copy prototype so instanceof operator still works
+    console.log("logClass 2");
+    // copy prototype so intanceof operator still works
     f.prototype = original.prototype;
-
-    //return new constructor(will override original)
+    console.log(f);
+    // return new constructor (will override original)
     return f;
 }
 
 @logClass
-class Person{
+class Person {
+
     public name: string;
     public surname: string;
 
-    constructor(name: string, surname: string){
+    constructor(name: string, surname: string) {
+        console.log("BP2");
         this.name = name;
         this.surname = surname;
+        console.log(this.name + ' and ' + this.surname);
     }
 }
 
-var p = new Person("TUAN", "VU");
+console.log('--------------------------');
+
+function logCreate<TFunction extends Function>(target: TFunction) {
+    console.log(target);
+    var f: any = function(...args){
+        console.log('Object created with args: ', args);
+    }
+
+    return f;
+
+    /*return function (...args) {
+        console.log('Object created with args: ', args);
+        return new Class(...args);
+    }*/
+}
+
+@logCreate
+class Animal {
+    constructor(footCount) {
+        console.log("original constructor Animal");
+    }
+}
+console.log('--------------------------');
+var var1 = new Animal("thisisAnimal");
+var var2 = new Animal(4);
+console.log('--------------------------');
+var var3 = new Person('one', 'two');
