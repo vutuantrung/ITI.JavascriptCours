@@ -15,7 +15,7 @@ describe("Action Sender Test", function(){
         
         sender.invoke("test", {
             a: 1,
-            b: 6 
+            b: 6
         }).then( r => {
             expect(r).to.be.eql(7);
             done();

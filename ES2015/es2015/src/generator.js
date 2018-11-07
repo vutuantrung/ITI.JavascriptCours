@@ -5,20 +5,17 @@ import 'babel-polyfill';
  * Mais en utilisant un generator
  */
 export function toIterable(obj) {
-    obj[Symbol.iterator] = () => {
+    obj[Symbol.iterator] = function* () {
         let keys = Object.keys(obj);
-        let i = -1;
-        return {
-            next() {
-                let j = ++i;
-                return {
-                    value: {
-                        key: keys[j],
-                        value: obj[keys[j]]
-                    },
-                    done: i === keys.length
-                }
+        let index = 0;
+        const n = keys.length;
+        while (index < n) {
+            let value = {
+                key: keys[index],
+                value: obj[keys[index]]
             }
+            index++;
+            yield value;
         }
     }
 }
@@ -32,8 +29,9 @@ export function* sequence(...funcs) {
     var index = 0;
     const n = list.length;
     while (index < n) {
-        /* index++;
+        /*
         yield list[index].call();
+        index++;
         */
         yield list[index++].call();
     }
