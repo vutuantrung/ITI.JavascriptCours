@@ -1,12 +1,9 @@
 function logClass<TFunction extends Function>(target: TFunction) {
-    console.log("logClass 1");
     // save a reference to the original constructor
     var original = target;
-    console.log(target);
     // a utility function to generate instances of a class
     function construct(constructor, args) {
         var c: any = function () {
-            console.log("function construct 1");
             return constructor.apply(this, args);
         }
         c.prototype = constructor.prototype;
@@ -15,15 +12,12 @@ function logClass<TFunction extends Function>(target: TFunction) {
 
     // the new constructor behaviour
     var f : any = function (...args) {
-        console.log(args);
         //console.log("New: " + original.name);
         return construct(original, args);
     }
 
-    console.log("logClass 2");
     // copy prototype so intanceof operator still works
     f.prototype = original.prototype;
-    console.log(f);
     // return new constructor (will override original)
     return f;
 }
@@ -35,17 +29,14 @@ class Person {
     public surname: string;
 
     constructor(name: string, surname: string) {
-        console.log("BP2");
         this.name = name;
         this.surname = surname;
-        console.log(this.name + ' and ' + this.surname);
     }
 }
 
 console.log('--------------------------');
 
 function logCreate<TFunction extends Function>(target: TFunction) {
-    console.log(target);
     var f: any = function(...args){
         console.log('Object created with args: ', args);
     }
@@ -64,8 +55,21 @@ class Animal {
         console.log("original constructor Animal");
     }
 }
-console.log('--------------------------');
-var var1 = new Animal("thisisAnimal");
-var var2 = new Animal(4);
-console.log('--------------------------');
-var var3 = new Person('one', 'two');
+
+function classDecoratorEx1<T extends {new(...args:any[]):{}}>(constructor: T){
+    return class extends constructor{
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+@classDecoratorEx1
+class Greeter{
+    property = "property";
+    hello: string;
+    constructor(m: string){
+        this.hello = m;
+    }
+}
+var x = new Animal(4);
+var y = new Person("trung", "vu");
+console.log(new Greeter("world"));console.log(y);
