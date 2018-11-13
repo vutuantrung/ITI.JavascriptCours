@@ -66,6 +66,9 @@ TypeScript/INTECH Cours/action/node_modules/
 NodeJS/iti-tweety/node_modules/
 NodeJS/iti-tweety/public/
 Toolling JS/Bootstrap/less/
+Angular/ClientSide/.vscode
+Angular/ClientSide/node_modules
+Angular/ServerSide/node_modules
 # Optional npm cache directory
 .npm
 

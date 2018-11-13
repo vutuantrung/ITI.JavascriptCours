@@ -20,6 +20,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 function logClass(target) {
     // save a reference to the original constructor
     var original = target;
+    console.log(target);
     // a utility function to generate instances of a class
     function construct(constructor, args) {
         var c = function () {
@@ -30,11 +31,14 @@ function logClass(target) {
     }
     // the new constructor behaviour
     var f = function () {
+        /**
+         * This is where we added new behavior of class
+         */
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        //console.log("New: " + original.name);
+        console.log("New: " + original.name);
         return construct(original, args);
     };
     // copy prototype so intanceof operator still works
@@ -52,6 +56,7 @@ var Person = /** @class */ (function () {
     ], Person);
     return Person;
 }());
+var x = new Person('vu', 'trung');
 console.log('--------------------------');
 function logCreate(target) {
     var f = function () {
@@ -92,13 +97,60 @@ var Greeter = /** @class */ (function () {
     function Greeter(m) {
         this.property = "property";
         this.hello = m;
+        console.log(this.hello);
+        console.log(this.property);
     }
     Greeter = __decorate([
         classDecoratorEx1
     ], Greeter);
     return Greeter;
 }());
-var x = new Animal(4);
-var y = new Person("trung", "vu");
-console.log(new Greeter("world"));
-console.log(y);
+function classDecoratorEx2(originalConstructor) {
+    var newConstructor = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.log("Arguments: ", args.join(", "));
+        new originalConstructor(args);
+    };
+    newConstructor.prototype = originalConstructor.prototype;
+    return newConstructor;
+}
+var Pet = /** @class */ (function () {
+    function Pet(name, age) {
+    }
+    Pet = __decorate([
+        classDecoratorEx2
+    ], Pet);
+    return Pet;
+}());
+function classDecoratorEx3(constructor) {
+    return /** @class */ (function (_super) {
+        __extends(class_2, _super);
+        function class_2() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_2.prototype.ngOnDestroy = function () {
+            console.log('Cleaning...');
+            // Auto Clean things and call the original method
+            constructor.prototype.ngOnDestroy.apply(this, arguments);
+        };
+        return class_2;
+    }(constructor));
+}
+var ClassComponentEx3 = /** @class */ (function () {
+    function ClassComponentEx3() {
+        this.ngOnDestroy = function () {
+            console.log('Executing...');
+            setTimeout(function () {
+                console.log('Executed.');
+            }, 2000);
+        };
+    }
+    ClassComponentEx3 = __decorate([
+        classDecoratorEx3
+    ], ClassComponentEx3);
+    return ClassComponentEx3;
+}());
+var test = new ClassComponentEx3().ngOnDestroy();
