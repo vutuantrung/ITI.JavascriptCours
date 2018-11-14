@@ -19,21 +19,23 @@ export class MessageParser {
         const pictureMatche = pictureRegex.exec(post.message);
         if (pictureMatche) {
             // retourner une instance de PicturePostContent
-            return new PicturePostContent(post.message);
-        }
-
-        const videoRegex = / /gmi;  // TODO
-        const videoMatche = videoRegex.exec(post.message);
-        if (videoMatche) {
-            // retourner une instance de VideoPostContent si match
-            return new VideoPostContent(post.message);
+            return new PicturePostContent(pictureMatche[0]);
         }
 
         const youtubeRegex = /(http[s]?:\/\/)?www\.(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/gmi;
         const youtubeMatche = youtubeRegex.exec(post.message);
         if(youtubeMatche){
             // retourner une instance de YoutubePostContent si match
-            return new YoutubePostContent(post.message);
+            console.log(youtubeMatche);
+            return new YoutubePostContent(youtubeMatche[2]);
+        }
+
+        const videoRegex = /http[s]?:\/\/.+\.(mp4|webm|ogg)/gmi;  // TODO
+        const videoMatche = videoRegex.exec(post.message);
+        if (videoMatche) {
+            // retourner une instance de VideoPostContent si match
+            console.log(videoMatche);
+            return new VideoPostContent(videoMatche[0]);
         }
 
         return null;

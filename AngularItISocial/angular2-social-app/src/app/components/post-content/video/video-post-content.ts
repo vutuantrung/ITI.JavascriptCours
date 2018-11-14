@@ -7,4 +7,6 @@ import { PostContent, VideoPostContent } from 'models';
 })
 export class VideoFeedContentComponent {
     @Input() postContent: VideoPostContent;
+    ngOnInit() {
+    }
 }

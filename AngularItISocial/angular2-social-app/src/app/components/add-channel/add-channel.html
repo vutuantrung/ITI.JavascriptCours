@@ -1,7 +1,5 @@
 <button nz-button nzType="primary" (click)="show()">Add channel</button>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Nouveau Channel" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="save()"
-  (nzOnCancel)="hide()">
-
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Nouveau Channel" nzOkText="Ok" nzCancelText="Cancel" (nzOnOk)="save()" (nzOnCancel)="hide()">
   <form class="modal-content" (ngSubmit)="save()" #f="ngForm">
     <nz-form-item>
       <label for="name">Nom</label>

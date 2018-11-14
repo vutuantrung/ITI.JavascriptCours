@@ -15,14 +15,13 @@ export class SocialFeedComponent implements OnInit {
         private postService: PostService,
         private postSocket: PostSocketService,
         private route: ActivatedRoute
-    ) { }
+    ) { 
+
+    }
 
     onSubmit(message: string) {
         //TODO utiliser le postService pour ajouter le message
-        this.postService.post(this.channelId, message)
-        .then((items) => {
-            this.items = items
-        });
+        this.postService.post(this.channelId, message);
     }
 
     ngOnInit() {
@@ -35,5 +34,9 @@ export class SocialFeedComponent implements OnInit {
                         this.items = items
                     });
             });
+
+        this.postSocket.onPost((message) =>{
+            this.items.unshift(message);
+        });
     }
 }

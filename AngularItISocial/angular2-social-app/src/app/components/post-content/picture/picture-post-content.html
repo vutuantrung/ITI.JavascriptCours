@@ -1,6 +1,7 @@
 <!-- TODO afficher une image -->
-
-<img src="${{postContent.value}}">"
+<div>
+    <img [src]="this.postContent.value.mediaUrl"/>
+</div>
 <style>
     img{
         width: 100%;

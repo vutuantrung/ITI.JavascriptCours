@@ -6,6 +6,4 @@ import { PostContent, PicturePostContent } from 'models';
 })
 export class PictureFeedContentComponent {
     @Input() postContent: PicturePostContent;
-    ngOnInit() {
-    }
 }

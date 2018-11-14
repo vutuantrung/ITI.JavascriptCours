@@ -1,1 +1,6 @@
 <!-- TODO afficher une vidéo -->
+<video controls>
+  <source [src]="this.postContent.value.mediaUrl" type="video/mp4">
+  <source [src]="this.postContent.value.mediaUrl" type="video/webm">
+  <source [src]="this.postContent.value.mediaUrl" type="video/ogg">
+</video>

@@ -22,15 +22,16 @@ export class PostComponent {
     ngOnInit() {
         // détermine le bon type de contenu
         this.post.content = this.parser.parse(this.post);
-        console.log(this.post);
+        if(this.post.content){
+            console.log(this.post.content);
+        }
+        this.postSocket.onComment((message)=>{
+            this.post.comments.unshift(message);
+        })
     }
 
     onComment(message: string) {
         // TODO envoyer le message
         this.postService.comment(this.post, message);
-    }
-
-    onLike(like: boolean){
-        this.postService.like(this.post);
     }
 }
