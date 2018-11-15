@@ -2,7 +2,6 @@ import { Component, Input, Pipe } from '@angular/core';
 import { PostContent, YoutubePostContent } from 'models';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Url } from 'url';
-import { url } from 'inspector';
 @Component({
     templateUrl: 'youtube-post-content.html',
     selector: 'youtube-post-content'

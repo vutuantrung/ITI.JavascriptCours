@@ -4,8 +4,7 @@ import {
     YoutubePostContent,
     PicturePostContent,
     VideoPostContent
-}
-    from '../models';
+} from '../models';
 
 const youtube = "https://youtu.be/";
 
@@ -13,31 +12,28 @@ const youtube = "https://youtu.be/";
  * Parse le contenu d'un post pour en extraire le texte, les images, les vidéos et les liens Youtube.
  */
 export class MessageParser {
-
-    parse(post: Post): PostContent<any> {
-        const pictureRegex = /http[s]?:\/\/.+\.(jpeg|png|jpg|gif)/gmi;
-        const pictureMatche = pictureRegex.exec(post.message);
-        if (pictureMatche) {
-            // retourner une instance de PicturePostContent
-            return new PicturePostContent(pictureMatche[0]);
-        }
-
+    parse(post: Post): PostContent<any>[] {
+        let mediaList = [];
+        var getURL;
+        const pictureRegex = /http[s]?:\/\/.+?\.(jpeg|png|jpg|gif)/gmi;
         const youtubeRegex = /(http[s]?:\/\/)?www\.(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/gmi;
-        const youtubeMatche = youtubeRegex.exec(post.message);
-        if(youtubeMatche){
-            // retourner une instance de YoutubePostContent si match
-            console.log(youtubeMatche);
-            return new YoutubePostContent(youtubeMatche[2]);
+        const videoRegex = /http[s]?:\/\/.+\.(mp4|webm|ogg)/gmi;
+
+        while(getURL = pictureRegex.exec(post.message)){
+            mediaList.push(new PicturePostContent(getURL[0]));
+        }
+        
+        while(getURL = youtubeRegex.exec(post.message)){
+            mediaList.push(new YoutubePostContent(getURL[2]));
         }
 
-        const videoRegex = /http[s]?:\/\/.+\.(mp4|webm|ogg)/gmi;  // TODO
-        const videoMatche = videoRegex.exec(post.message);
-        if (videoMatche) {
-            // retourner une instance de VideoPostContent si match
-            console.log(videoMatche);
-            return new VideoPostContent(videoMatche[0]);
+        while(getURL = videoRegex.exec(post.message)){
+            mediaList.push(new VideoPostContent(getURL[0]));
         }
 
+        if(mediaList.length > 0){
+            return mediaList;
+        }
         return null;
     }
 }

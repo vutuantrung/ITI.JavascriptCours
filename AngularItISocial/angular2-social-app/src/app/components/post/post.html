@@ -1,7 +1,7 @@
 <div class="header">
   <div class="user-picture">
     <!-- TODO utiliser le composant user-profile-picture -->
-    <user-profile-picture></user-profile-picture>
+    <user-profile-picture [src]="user.pictureUrl"></user-profile-picture>
   </div>
   <div class="username">
     <!-- afficher le nom -->
@@ -15,7 +15,7 @@
     <div class="actions">
       <!-- TODO liker au clic -->
       <a [class.liked]="post.liked">
-        <fa-icon (click)="post.liked = !post.liked" [icon]="[post.liked ? 'fas' : 'far', 'heart']" size="2x"></fa-icon>
+        <fa-icon (click)="onLike()" [icon]="[post.liked ? 'fas' : 'far', 'heart']" size="2x"></fa-icon>
       </a>
     </div>
   </div>
@@ -27,15 +27,15 @@
   </pre>
   <div *ngIf="post.content">
     <!-- afficher les bons composants picture-post-content, youtube-post-content ou video-post-content en fonction du type de contenu -->
-    <div [ngSwitch]="post.content.type">
-      <div *ngSwitchCase="'video'">
-        <video-post-content [postContent] = "post.content"></video-post-content>
+    <div *ngFor="let postContent of post.content">
+      <div *ngIf="postContent.type == 'picture'">
+        <picture-post-content [postContent]="postContent"></picture-post-content>
       </div>
-      <div *ngSwitchCase="'youtube'">
-        <youtube-post-content [postContent] = "post.content"></youtube-post-content>
+      <div *ngIf="postContent.type == 'video'">
+        <video-post-content [postContent]="postContent"></video-post-content>
       </div>
-      <div *ngSwitchCase="'picture'">
-        <picture-post-content [postContent] = "post.content"></picture-post-content>
+      <div *ngIf="postContent.type == 'youtube'">
+        <youtube-post-content [postContent]="postContent"></youtube-post-content>
       </div>
     </div>
   </div>

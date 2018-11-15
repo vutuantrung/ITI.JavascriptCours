@@ -1,2 +1,17 @@
 <!-- TODO afficher le message -->
-{{ comment.message }}
+<pre *ngIf="!comment.content" class="message">
+    {{comment.message}}
+</pre>
+<div *ngFor="let commentContent of comment.content">
+  <div *ngIf="comment.content">
+    <div *ngIf="commentContent.type === 'picture'">
+      <picture-post-content [postContent]="commentContent"></picture-post-content>
+    </div>
+    <div *ngIf="commentContent.type === 'video'">
+      <video-post-content [postContent]="commentContent"></video-post-content>
+    </div>
+    <div *ngIf="commentContent.type === 'youtube'">
+      <youtube-post-content [postContent]="commentContent"></youtube-post-content>
+    </div>
+  </div>
+</div>
