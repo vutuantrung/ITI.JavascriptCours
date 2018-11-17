@@ -69,6 +69,8 @@ Toolling JS/Bootstrap/less/
 Angular/ClientSide/.vscode
 Angular/ClientSide/node_modules
 Angular/ServerSide/node_modules
+BabylonJS/node_modules
+BabylonJS/build
 # Optional npm cache directory
 .npm
 
